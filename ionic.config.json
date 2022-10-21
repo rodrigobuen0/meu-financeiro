@@ -1,0 +1,8 @@
+{
+  "name": "Meu Financeiro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e34bfc0b"
+}
