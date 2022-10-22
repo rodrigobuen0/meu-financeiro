@@ -1,7 +1,17 @@
 header {
   background-color: var(--ion-toolbar-background);
   border-radius: 0px 0px 10% 10% / 0px 0px 20% 20%;
+  padding: 10px 0 20px 0;
 }
+
 header h1 {
   margin-top: 0;
+}
+
+ion-card {
+  font-family: Montserrat !important;
+  margin-inline: 0;
+  margin-top: auto;
+  border-radius: 8px;
+  margin-bottom: 24px;
 }
