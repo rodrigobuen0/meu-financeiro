@@ -1,0 +1,5 @@
+ionic build
+
+ionic capacitor build android
+
+npx cap open android

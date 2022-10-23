@@ -2,6 +2,7 @@ header {
   background-color: var(--ion-toolbar-background);
   border-radius: 0px 0px 10% 10% / 0px 0px 20% 20%;
   padding: 10px 0 20px 0;
+  margin-bottom: 30px;
 }
 
 header h1 {
@@ -14,4 +15,17 @@ ion-card {
   margin-top: auto;
   border-radius: 8px;
   margin-bottom: 24px;
+}
+
+ion-icon {
+  font-size: 20px;
+}
+
+ion-card-content {
+  padding-inline: 5px;
+  color: var(--ion-text-color);
+}
+
+ion-card-content ion-icon{
+  font-size: 25px;
 }

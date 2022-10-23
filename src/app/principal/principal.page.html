@@ -1,7 +1,24 @@
 <ion-content [scrollEvents]="true">
   <header>
     <div class="container text-center">
-      <div class="row">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">COL 4</ion-col>
+          <ion-col size="4">COL 4</ion-col>
+          <ion-col size="4">COL 4</ion-col>
+
+          <ion-col size="2"></ion-col>
+          <ion-col size="8">
+            <span class="spanTitle">Saldo Total</span>
+            <h3>R$ 1500,00</h3>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+
+          <ion-col size="6">COL 4</ion-col>
+          <ion-col size="6">COL 4</ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div class="row">
         <div class="col-4">COL 4</div>
         <div class="col-4">COL 4</div>
         <div class="col-4">COL 4</div>
@@ -14,64 +31,88 @@
         <div class="col-2"></div>
         <div class="col-6">COL 6</div>
         <div class="col-6">COL 6</div>
-      </div>
+      </div> -->
     </div>
   </header>
   <div class="container">
-    <h1 class="mt-2 text-center">Main Content</h1>
 
+    <ion-grid>
+      <ion-row class="spanTitle">
+        <ion-col class="my-auto">
+          <ion-label>
+            <h2>Contas</h2>
+          </ion-label>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-icon name="book"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-card>
-      <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      </ion-card-header>
-
       <ion-card-content>
-        Here's a small text description for the card content. Nothing more, nothing less.
+        <ion-grid>
+          <ion-row class="mb-1">
+            <ion-col size="auto" class="my-auto">
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" width="40"/>
+            </ion-col>
+            <ion-col class="pl-1">
+              <ion-label>
+                <span>Conta 1</span><br>
+                <span>R$ 500,00</span>
+              </ion-label>
+            </ion-col>
+            <ion-col size="auto" class="my-auto">
+              <ion-icon name="add"></ion-icon>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="mb-1">
+            <ion-col size="auto" class="my-auto">
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" width="40"/>
+            </ion-col>
+            <ion-col class="pl-1">
+              <ion-label>
+                <span>Conta 1</span><br>
+                <span>R$ 500,00</span>
+              </ion-label>
+            </ion-col>
+            <ion-col size="auto" class="my-auto">
+              <ion-icon name="add"></ion-icon>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="auto" class="my-auto">
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" width="40"/>
+            </ion-col>
+            <ion-col class="pl-1">
+              <ion-label>
+                <span>Conta 1</span><br>
+                <span>R$ 500,00</span>
+              </ion-label>
+            </ion-col>
+            <ion-col size="auto" class="my-auto">
+              <ion-icon name="add"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <hr />
+          <ion-row>
+            <ion-col>
+              <ion-label>
+                <h2>Total</h2>
+              </ion-label>
+            </ion-col>
+            <ion-col size="auto">
+              <h2>R$ 1500,00</h2>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
 
     <ion-card>
-      <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      </ion-card-header>
-
       <ion-card-content>
-        Here's a small text description for the card content. Nothing more, nothing less.
-      </ion-card-content>
-    </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        Here's a small text description for the card content. Nothing more, nothing less.
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        Here's a small text description for the card content. Nothing more, nothing less.
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content>
-        Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
     </ion-card>
 
