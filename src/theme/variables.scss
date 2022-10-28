@@ -250,3 +250,13 @@ ion-content{
 ion-content::part(scroll) {
   padding-right: 15px;
 }
+
+.c3-chart-arc path {
+  stroke: none !important;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: flex;
+}
