@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  api_url: 'https://localhost:7177'
 };
 
 /*

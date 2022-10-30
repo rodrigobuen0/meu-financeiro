@@ -130,6 +130,16 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-
+    <ion-button (click)="logout()">
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
+    <ion-content>
+      <ion-button expand="full" (click)="getData()">Get data</ion-button>
+      <ion-card>
+        <ion-card-content>
+          {{ secretData }}
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
   </div>
 </ion-content>

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit  } from '@angular/core';
+import { ApiService } from './../services/api.service';
 import * as c3 from 'c3';
 import * as d3 from 'd3';
 
@@ -7,11 +8,25 @@ import * as d3 from 'd3';
   templateUrl: 'principal.page.html',
   styleUrls: ['principal.page.scss']
 })
-export class PrincipalPage implements AfterViewInit{
+export class PrincipalPage implements AfterViewInit, OnInit{
 
-  constructor() {
+  secretData = null;
 
-}
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() { }
+
+  async getData() {
+    this.secretData = null;
+
+    this.apiService.getSecretData().subscribe((res: any) => {
+      this.secretData = res.msg;
+    });
+  }
+
+  logout() {
+    this.apiService.logout();
+  }
 
 
   ngAfterViewInit() {
