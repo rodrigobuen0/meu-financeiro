@@ -7,12 +7,23 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 
+import { SharedComponentsModule } from '../components/shared-components.module';
+import { ReceitaPageModule } from './../pages/receita/receita.module';
+import { DespesaPageModule } from './../pages/despesa/despesa.module';
+import { DespesaCartaoPageModule } from './../pages/despesa-cartao/despesa-cartao.module';
+import { TransferenciaPageModule } from './../pages/transferencia/transferencia.module';
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    SharedComponentsModule,
+    ReceitaPageModule,
+    DespesaPageModule,
+    DespesaCartaoPageModule,
+    TransferenciaPageModule
   ],
   declarations: [TabsPage]
 })

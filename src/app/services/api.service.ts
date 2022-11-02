@@ -98,7 +98,7 @@ getNewAccessToken() {
             Authorization: `Bearer ${token}`
           })
         };
-        return this.http.get(`${this.url}/auth/refresh`, httpOptions);
+        return this.http.get(`${this.url}/refresh-token`, httpOptions);
       } else {
         // No stored refresh token
         return of(null);

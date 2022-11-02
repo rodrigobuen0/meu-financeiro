@@ -102,7 +102,7 @@ private handle401Error(request: HttpRequest < any >, next: HttpHandler): Observa
       switchMap((token: any) => {
         if (token) {
           // Store the new token
-          const accessToken = token.accessToken;
+          const accessToken = token.jwtToken;
           return this.apiService.storeAccessToken(accessToken).pipe(
             switchMap(_ => {
               // Use the subject so other calls can continue with the new token

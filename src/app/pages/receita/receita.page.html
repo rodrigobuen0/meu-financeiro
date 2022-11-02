@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Nova Receita</ion-text>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Valor da Receita</ion-label>
+    <ion-input [(ngModel)]="valorReceita" maxlength="15" type="tel" placeholder="R$ 0,00" currencyMask decimal="," thousand="."></ion-input>
+  </ion-item>
+</ion-content>
