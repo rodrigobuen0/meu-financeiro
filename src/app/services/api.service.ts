@@ -48,6 +48,7 @@ export class ApiService {
   login(credentials: {usuario, senha}): Observable<any> {
     return this.http.post(`${this.url}/auth`, credentials).pipe(
       switchMap((tokens: {jwtToken; refreshToken }) => {
+        console.log(this.currentAccessToken);
         this.currentAccessToken = tokens.jwtToken;
         const storeAccess = Preferences.set({key: ACCESS_TOKEN_KEY, value: tokens.jwtToken});
         const storeRefresh = Preferences.set({key: REFRESH_TOKEN_KEY, value: tokens.refreshToken});

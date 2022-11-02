@@ -16,14 +16,6 @@ export class PrincipalPage implements AfterViewInit, OnInit{
 
   ngOnInit() { }
 
-  async getData() {
-    this.secretData = null;
-
-    this.apiService.getSecretData().subscribe((res: any) => {
-      this.secretData = res.msg;
-    });
-  }
-
   logout() {
     this.apiService.logout();
   }

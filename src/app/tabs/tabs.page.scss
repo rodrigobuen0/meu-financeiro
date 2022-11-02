@@ -1,3 +1,20 @@
 ion-tabs-button ion-icon {
   font-size: 16px;
 }
+ion-item {
+margin: 0 10px 0 10px;
+}
+
+ion-item::part(native) {
+  font-family: Montserrat !important;
+  background: none;
+  color: var(--ion-text-color);
+  border-color: var(--ion-text-color);
+  border-width: 0 0 1px 0;
+  margin: auto;
+  height: 50px;
+}
+
+ion-label {
+  font-family: Montserrat !important;
+}
