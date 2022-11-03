@@ -47,7 +47,7 @@ export class CurrencyMaskDirective {
     const parts = value.toString().split(this.decimal);
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, this.thousand);
     value = parts.join(this.decimal);
-    console.log(value);
+    //console.log(value);
     event.target.value = value;
     this.model.update.emit(value);
     return true;

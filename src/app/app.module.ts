@@ -9,13 +9,14 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 ],
   bootstrap: [AppComponent],
 })

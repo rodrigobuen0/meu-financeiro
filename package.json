@@ -27,6 +27,7 @@
     "@capacitor/preferences": "^4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@ionic/storage-angular": "^3.0.6",
     "@types/c3": "^0.7.8",
     "bootstrap": "^5.2.2",
     "c3": "^0.7.20",

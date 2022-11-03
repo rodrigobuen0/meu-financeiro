@@ -8,12 +8,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class ReceitaPage implements OnInit {
   valorReceita;
-
-  constructor(private modalController: ModalController) {}
-
-  ngOnInit() {}
-
+  dataReceita = new Date().toISOString();
+  descricaoReceita;
+  constructor(private modalController: ModalController) {
+  }
+  ngOnInit() {
+  }
   close() {
     this.modalController.dismiss();
   }
+
 }
