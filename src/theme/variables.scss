@@ -235,9 +235,11 @@
     --ion-card-background: #343A40;
   }
 }
+*{
+  font-family: Montserrat !important;
+}
 
 ion-content{
-  font-family: Montserrat !important;
   width: calc(100% + 15px);
 }
 

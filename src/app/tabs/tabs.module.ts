@@ -12,6 +12,7 @@ import { ReceitaPageModule } from './../pages/receita/receita.module';
 import { DespesaPageModule } from './../pages/despesa/despesa.module';
 import { DespesaCartaoPageModule } from './../pages/despesa-cartao/despesa-cartao.module';
 import { TransferenciaPageModule } from './../pages/transferencia/transferencia.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { TransferenciaPageModule } from './../pages/transferencia/transferencia.
     DespesaCartaoPageModule,
     TransferenciaPageModule
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
+  providers: [DatePipe]
 })
 export class TabsPageModule {}

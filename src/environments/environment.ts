@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   api_url: 'https://localhost:7177'
+  //api_url: 'https://meu-financeiro.rodrigobueno.dev'
 };
 
 /*

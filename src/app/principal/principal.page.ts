@@ -9,17 +9,26 @@ import * as d3 from 'd3';
   styleUrls: ['principal.page.scss']
 })
 export class PrincipalPage implements AfterViewInit, OnInit{
-
   secretData = null;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,) {
+  }
 
-  ngOnInit() { }
+  get totalContas(){
+    return ApiService.totalContas;
+   }
+
+   get contas(){
+    return ApiService.contas;
+   }
+
+  ngOnInit() {
+
+  }
 
   logout() {
     this.apiService.logout();
   }
-
 
   ngAfterViewInit() {
    // eslint-disable-next-line prefer-const

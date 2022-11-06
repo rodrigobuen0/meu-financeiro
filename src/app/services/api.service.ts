@@ -15,6 +15,9 @@ const REFRESH_TOKEN_KEY = 'my-refresh-token';
 })
 
 export class ApiService {
+  public static categorias: [Categorias];
+  public static contas: [Contas];
+  public static totalContas: number;
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
   url = environment.api_url;
@@ -23,6 +26,10 @@ export class ApiService {
     this.loadToken();
    }
 
+   public static defineTotalContas(){
+      ApiService.totalContas = ApiService.contas.reduce((accumulator, object) => accumulator + object.saldoAtual, 0);
+  }
+
    async loadToken() {
       await this.storage.create();
     const token = await this.storage.get('my-access-token');
@@ -30,6 +37,8 @@ export class ApiService {
       this.currentAccessToken = token;
       this.isAuthenticated.next(true);
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
+      this.getCategorias();
+      this.getContas();
     } else {
       this.isAuthenticated.next(false);
     }
@@ -100,7 +109,7 @@ getNewAccessToken() {
           }),
           body: {token}
         };
-        return this.http.get(`${this.url}/refresh-token`, httpOptions);
+        return this.http.post(`${this.url}/refresh-token`, httpOptions);
       } else {
         // No stored refresh token
         return of(null);
@@ -118,4 +127,33 @@ storeAccessToken(accessToken) {
 storeRefreshToken(refreshToken) {
   return from(this.storage.set('my-refresh-token', refreshToken));
 }
+
+getCategorias(){
+  this.http.get<any>(`${this.url}/api/Categorias`).subscribe(data => {
+    ApiService.categorias = data;
+    this.storage.set('categorias', data);
+        });
+}
+
+getContas(){
+  this.http.get<any>(`${this.url}/api/Contas`).subscribe(data => {
+    ApiService.contas = data;
+    ApiService.totalContas = ApiService.contas.reduce((accumulator, object) => accumulator + object.saldoAtual, 0);
+    this.storage.set('contas', data);
+        });
+}
+
+}
+
+interface Contas {
+  id: string;
+  descricao: string;
+  saldoAtual: number;
+  tipoConta: number;
+  userId: string;
+}
+interface Categorias {
+  id: string;
+  descricao: string;
+  userId: string;
 }
