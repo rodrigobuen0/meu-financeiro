@@ -82,8 +82,8 @@ private async handle400Error(err) {
     duration: 2000
   });
   toast.present();
-  // this.apiService.logout();
-  // return of(null);
+  this.apiService.logout();
+  return of(null);
 }
 
 // Indicates our access token is invalid, try to load a new one

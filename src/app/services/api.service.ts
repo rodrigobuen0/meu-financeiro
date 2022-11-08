@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { tap, switchMap} from 'rxjs/operators';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -36,9 +36,9 @@ export class ApiService {
     if (token) {
       this.currentAccessToken = token;
       this.isAuthenticated.next(true);
+      await this.getCategorias();
+      await this.getContas();
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
-      this.getCategorias();
-      this.getContas();
     } else {
       this.isAuthenticated.next(false);
     }
@@ -102,14 +102,7 @@ getNewAccessToken() {
   return refreshToken.pipe(
     switchMap(token => {
       if (token) {
-        const httpOptions = {
-          headers: new HttpHeaders({
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            'Content-Type': 'application/json',
-          }),
-          body: {token}
-        };
-        return this.http.post(`${this.url}/refresh-token`, httpOptions);
+        return this.http.post(`${this.url}/refresh-token`, { token });
       } else {
         // No stored refresh token
         return of(null);
