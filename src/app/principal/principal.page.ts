@@ -1,94 +1,98 @@
-import { AfterViewInit, Component, OnInit  } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../services/api.service';
-import * as c3 from 'c3';
-import * as d3 from 'd3';
+import { ChartData, ChartOptions } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-principal',
   templateUrl: 'principal.page.html',
-  styleUrls: ['principal.page.scss']
+  styleUrls: ['principal.page.scss'],
 })
-export class PrincipalPage implements AfterViewInit, OnInit{
-  secretData = null;
+export class PrincipalPage implements AfterViewInit, OnInit {
+  @ViewChild(BaseChartDirective) baseChart: BaseChartDirective;
 
-  constructor(private apiService: ApiService,) {
+  chartData = [
+    {
+      data: [27, 45, 62, 12],
+      label: 'Men',
+      borderWidth: 0,
+      hidden: false
+    },
+  ];
+  salesData: ChartData<'doughnut'> = {
+       labels: ['Jan', 'Feb', 'Mar'],
+       datasets: [
+         {
+           label: 'Mobiles',
+           data: [1000, 1200, 1050],
+           borderWidth: 0,
+           backgroundColor: [
+             'rgb(255, 99, 132)',
+             'rgb(54, 162, 235)',
+             'rgb(255, 205, 86)',
+           ],
+         },
+       ],
+     };
+  dataSet = [
+
+  ];
+
+  chartLabels = [
+    'Jan', 'Feb', 'Mar', 'Apr'
+  ];
+  chartOptions = {
+    responsive: true,
+  };
+
+  // secretData = null;
+  // salesData: ChartData<'doughnut'> = {
+  //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+  //   datasets: [
+  //     {
+  //       label: 'Mobiles',
+  //       data: [1000, 1200, 1050],
+  //       borderWidth: 0,
+  //       backgroundColor: [
+  //         'rgb(255, 99, 132)',
+  //         'rgb(54, 162, 235)',
+  //         'rgb(255, 205, 86)',
+  //       ],
+  //     },
+  //   ],
+  // };
+  // chartOptions: ChartOptions = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: { display: false },
+  //     title: {
+  //       display: false,
+  //       text: 'Monthly Sales Data',
+  //     },
+  //   },
+  // };
+
+  constructor(private apiService: ApiService) {}
+
+  get totalContas() {
+    return ApiService.totalContas;
   }
 
-  get totalContas(){
-    return ApiService.totalContas;
-   }
-
-   get contas(){
+  get contas() {
     return ApiService.contas;
-   }
+  }
+
+  get totalReceitasMes() {
+    return ApiService.totalReceitasMes;
+  }
 
   ngOnInit() {
-
   }
 
   logout() {
     this.apiService.logout();
   }
 
-  ngAfterViewInit() {
-   // eslint-disable-next-line prefer-const
-   let chart = c3.generate({
-    bindto: '#chart',
-    padding: {
-      top: 5,
-      right: 50,
-      bottom: 5,
-      left: 5,
-  },
-        data: {
-            columns: [
-                ['data1', 30],
-                ['data2', 50]
-            ],
-            type : 'donut',
-        },interaction: {
-          enabled: false
-        },
-        legend: {
-          show: false,
-            position: 'right',
-            padding: 15,
-            item: {
-              tile: {
-                width: 10,
-                height: 10,
-              }
-            }
-        },
-        size: {
-          height: 120
-        },
-        tooltip: {
-          show: false
-      },donut: {
-        label: {
-          show: false,
-        },
-        width: 20
-      }
-    });
-    d3.select('.legendaChart').insert('div', '.legend').attr('class', 'legend')  .insert('ul').attr('class', 'list-group')
-    .selectAll('span')
-    .data(['data1', 'data2'])
-    .enter().append('li').attr('class', '')
-    .insert('span').attr('class', 'dot')
-    .each(function(id) {
-      d3.select(this).style('background-color', chart.color(id));
-    })
-    .insert('div').attr('class', 'legend-label')
-    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-    .attr('data-id', function(id) { return id; })
-    .insert('span').attr('class', 'legend-label')
-  // .each(function(id) {
-  //   d3.select(this).style('background-color', chart.color(id));
-  // })
-    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-    .html(function(id) {return id; });
-
-  }
+  ngAfterViewInit() {}
 }

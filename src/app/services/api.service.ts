@@ -18,6 +18,7 @@ export class ApiService {
   public static categorias: [Categorias];
   public static contas: [Contas];
   public static totalContas: number;
+  public static totalReceitasMes: number;
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
   url = environment.api_url;
@@ -38,6 +39,7 @@ export class ApiService {
       this.isAuthenticated.next(true);
       await this.getCategorias();
       await this.getContas();
+      await this.getValorTotalReceitasMes();
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
     } else {
       this.isAuthenticated.next(false);
@@ -135,6 +137,13 @@ getContas(){
     this.storage.set('contas', data);
         });
 }
+getValorTotalReceitasMes(){
+  this.http.get<any>(`${this.url}/api/Receitas/ValorReceitasMes`)
+  .subscribe((data) => {
+    ApiService.totalReceitasMes = data;
+  });
+}
+
 
 }
 
