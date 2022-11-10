@@ -103,11 +103,12 @@ private handle401Error(request: HttpRequest < any >, next: HttpHandler): Observa
         if (token) {
           // Store the new token
           const accessToken = token.jwtToken;
+          this.apiService.storeRefreshToken(token.refreshToken);
+
           return this.apiService.storeAccessToken(accessToken).pipe(
             switchMap(_ => {
               // Use the subject so other calls can continue with the new token
               this.tokenSubject.next(accessToken);
-
               // Perform the initial request again with the new token
               return next.handle(this.addToken(request));
             })

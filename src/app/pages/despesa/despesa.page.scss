@@ -1,0 +1,10 @@
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+ion-popover {
+  &.width-80 {
+    --width: 80%;
+  }
+}

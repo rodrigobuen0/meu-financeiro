@@ -83,6 +83,8 @@ export class ReceitaPage implements OnInit {
         const indexConta = ApiService.contas.findIndex((x) => x.id === body.contaId);
 
         ApiService.contas[indexConta].saldoAtual += parseFloat(body.valor);
+        ApiService.totalReceitasMes += parseFloat(body.valor);
+
         await this.atualizarSaldo(ApiService.contas[indexConta]);
         loading.dismiss();
         this.modalController.dismiss();

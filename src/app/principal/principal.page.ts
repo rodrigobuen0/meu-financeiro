@@ -87,6 +87,10 @@ export class PrincipalPage implements AfterViewInit, OnInit {
     return ApiService.totalReceitasMes;
   }
 
+  get totalDespesasMes() {
+    return ApiService.totalDespesasMes;
+  }
+
   ngOnInit() {
   }
 

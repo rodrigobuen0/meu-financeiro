@@ -1,9 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>despesa</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Nova Despesa</ion-text>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-item>
+    <ion-label position="stacked">Valor da Despesa</ion-label>
+    <ion-input [(ngModel)]="valorDespesa" maxlength="15" type="tel" placeholder="R$ 0,00" currencyMask decimal="," thousand="."></ion-input>
+  </ion-item>
+
+  <ion-item id="open-popover1">
+    <ion-label>Data da Despesa</ion-label>
+    <ion-note slot="end" >{{dataDespesa | date: 'dd/MM/yyyy'}}</ion-note>
+  </ion-item>
+  <ion-popover trigger="open-popover1" cssClass="width-80" show-backdrop="true" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-datetime
+        presentation="date"
+        [(ngModel)]="dataDespesa"
+        size="cover"
+      ></ion-datetime>
+    </ng-template>
+  </ion-popover>
+
+  <ion-item>
+    <ion-label position="stacked">Descrição da Despesa</ion-label>
+    <ion-input [(ngModel)]="descricaoDespesa" maxlength="50" type="text" placeholder="Descrição"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select interface="popover" placeholder="Categoria" [(ngModel)]="categoriaSelecionada">
+      <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.descricao}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select interface="popover" placeholder="Conta" [(ngModel)]="contaSelecionada">
+      <ion-select-option *ngFor="let conta of contas" [value]="conta.id">{{conta.descricao}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="inserirDespesa()">Incluir</ion-button>
 
 </ion-content>
