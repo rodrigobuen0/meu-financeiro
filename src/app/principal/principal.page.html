@@ -14,13 +14,23 @@
           </ion-col>
           <ion-col size="2"></ion-col>
 
-          <ion-col size="6">
-            <span class="spanTitle">Receitas Totais</span>
-            <h3 class="text-success">{{totalReceitasMes | currency:'BRL'}}</h3>
+          <ion-col size="6" (click)="clickReceitas()">
+            <p class="spanTitle">Receitas Totais</p>
+            <h3 class="text-success d-inline-flex align-items-center">
+              <span>
+                <ion-icon class="iconHeader" name="arrow-up-circle"></ion-icon>
+              </span>
+              {{totalReceitasMes | currency:'BRL'}}
+            </h3>
           </ion-col>
-          <ion-col size="6">
-            <span class="spanTitle">Despesas Totais</span>
-            <h3 class="text-danger">{{totalDespesasMes | currency:'BRL'}}</h3>
+          <ion-col size="6" (click)="clickDespesas()">
+            <p class="spanTitle">Despesas Totais</p>
+            <h3 class="text-danger d-inline-flex align-items-center">
+              <span>
+                <ion-icon class="iconHeader" name="arrow-down-circle"></ion-icon>
+              </span>
+              {{totalDespesasMes | currency:'BRL'}}
+            </h3>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -92,7 +102,6 @@
               [legend]="false"
               [datasets]="salesData.datasets"
               [options]="chartOptions"
-              [labels]="chartLabels"
               baseChart>
             </canvas></ion-col>
             <ion-col size="4" class="legendaChart d-flex align-items-center">

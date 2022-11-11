@@ -247,6 +247,7 @@ ion-content{
   color: var(--ion-color-step-600);
   font-weight: bold;
   font-size: 14px;
+  margin-bottom: 0;
 }
 
 ion-content::part(scroll) {
@@ -263,9 +264,9 @@ ion-content::part(scroll) {
   display: flex;
 }
 .fab-vertical-bottom {
-  bottom: 25px;
+  bottom: 15px;
 }
 .fab-horizontal-center {
     margin-left: unset;
-    margin-inline-start: -25px !important;
+    margin-inline-start: -28px !important;
 }

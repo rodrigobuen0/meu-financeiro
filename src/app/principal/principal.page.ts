@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../services/api.service';
 import { ChartData, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,68 +13,32 @@ import { BaseChartDirective } from 'ng2-charts';
 export class PrincipalPage implements AfterViewInit, OnInit {
   @ViewChild(BaseChartDirective) baseChart: BaseChartDirective;
 
-  chartData = [
-    {
-      data: [27, 45, 62, 12],
-      label: 'Men',
-      borderWidth: 0,
-      hidden: false
-    },
-  ];
   salesData: ChartData<'doughnut'> = {
-       labels: ['Jan', 'Feb', 'Mar'],
+       labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai'],
        datasets: [
          {
-           label: 'Mobiles',
-           data: [1000, 1200, 1050],
+           data: [1000, 1200, 1050, 1202, 503],
            borderWidth: 0,
            backgroundColor: [
-             'rgb(255, 99, 132)',
-             'rgb(54, 162, 235)',
-             'rgb(255, 205, 86)',
+             'rgb(239, 71, 111)',
+             'rgb(255, 209, 102)',
+             'rgb(6, 214, 160)',
+             'rgb(17, 138, 178)',
+             'rgb(8, 100, 103)',
            ],
          },
        ],
      };
-  dataSet = [
 
-  ];
-
-  chartLabels = [
-    'Jan', 'Feb', 'Mar', 'Apr'
-  ];
+  // chartLabels = [
+  //   'Jan', 'Feb', 'Mar', 'Apr', 'Mai'
+  // ];
   chartOptions = {
     responsive: true,
   };
 
-  // secretData = null;
-  // salesData: ChartData<'doughnut'> = {
-  //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-  //   datasets: [
-  //     {
-  //       label: 'Mobiles',
-  //       data: [1000, 1200, 1050],
-  //       borderWidth: 0,
-  //       backgroundColor: [
-  //         'rgb(255, 99, 132)',
-  //         'rgb(54, 162, 235)',
-  //         'rgb(255, 205, 86)',
-  //       ],
-  //     },
-  //   ],
-  // };
-  // chartOptions: ChartOptions = {
-  //   responsive: true,
-  //   plugins: {
-  //     legend: { display: false },
-  //     title: {
-  //       display: false,
-  //       text: 'Monthly Sales Data',
-  //     },
-  //   },
-  // };
-
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService,  private router: Router,
+    ) {}
 
   get totalContas() {
     return ApiService.totalContas;
@@ -94,9 +59,18 @@ export class PrincipalPage implements AfterViewInit, OnInit {
   ngOnInit() {
   }
 
+  clickReceitas(){
+    this.router.navigateByUrl('/tabs/receitas', { replaceUrl: true });
+  }
+  clickDespesas(){
+    this.router.navigateByUrl('/tabs/despesas', { replaceUrl: true });
+  }
+
   logout() {
     this.apiService.logout();
   }
 
   ngAfterViewInit() {}
+
+
 }

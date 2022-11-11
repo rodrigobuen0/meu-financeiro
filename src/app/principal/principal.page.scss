@@ -1,7 +1,7 @@
 header {
   background-color: var(--ion-toolbar-background);
-  border-radius: 0px 0px 10% 10% / 0px 0px 20% 20%;
-  padding: 10px 0 20px 0;
+  border-radius: 0px 0px 10% 10% / 0px 0px 16% 16%;
+  padding: 10px 0 0 0;
   margin-bottom: 30px;
 }
 
@@ -28,6 +28,9 @@ ion-card-content {
 
 ion-card-content ion-icon{
   font-size: 25px;
+}
+.iconHeader {
+  font-size: 50px !important;
 }
 
 li {
