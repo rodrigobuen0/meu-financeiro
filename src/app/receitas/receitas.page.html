@@ -14,5 +14,13 @@
     </ng-template>
   </ion-modal>
 
-  <app-explore-container name="Receitas"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let receita of todasReceitas">
+      <ion-label>
+        <span>{{receita.descricao}}</span>
+        <p>{{categoria(receita.categoriaId)}} | {{conta(receita.contaId)}}</p>
+      </ion-label>
+      <ion-label slot="end" class="text-success">{{receita.valor | currency:'BRL'}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

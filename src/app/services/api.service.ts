@@ -19,7 +19,9 @@ export class ApiService {
   public static contas: [Contas];
   public static totalContas: number;
   public static totalReceitasMes: number;
+  public static todasReceitasMes: [Receitas];
   public static totalDespesasMes: number;
+  public static todasDespesasMes: [Despesas];
 
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
@@ -143,16 +145,18 @@ getContas(){
 }
 
 getValorTotalReceitasMes(){
-  this.http.get<any>(`${this.url}/api/Receitas/ValorReceitasMes`)
+  this.http.get<any>(`${this.url}/api/Receitas/ReceitasMes`)
   .subscribe((data) => {
-    ApiService.totalReceitasMes = data;
+    ApiService.totalReceitasMes = data.reduce((accumulator, object) => accumulator + object.valor, 0);
+    ApiService.todasReceitasMes = data;
   });
 }
 
 getValorTotalDespesasMes(){
-  this.http.get<any>(`${this.url}/api/Despesas/ValorDespesasMes`)
+  this.http.get<any>(`${this.url}/api/Despesas/DespesasMes`)
   .subscribe((data) => {
-    ApiService.totalDespesasMes = data;
+    ApiService.totalDespesasMes = data.reduce((accumulator, object) => accumulator + object.valor, 0);
+    ApiService.todasDespesasMes = data;
   });
 }
 
@@ -165,8 +169,30 @@ interface Contas {
   tipoConta: number;
   userId: string;
 }
+
 interface Categorias {
   id: string;
   descricao: string;
   userId: string;
 }
+
+interface Receitas {
+  id: string;
+  descricao: string;
+  valor: number;
+  dataTransacao: Date;
+  categoriaId: string;
+  contaId: string;
+  userId: string;
+}
+
+interface Despesas {
+  id: string;
+  descricao: string;
+  valor: number;
+  dataTransacao: Date;
+  categoriaId: string;
+  contaId: string;
+  userId: string;
+}
+

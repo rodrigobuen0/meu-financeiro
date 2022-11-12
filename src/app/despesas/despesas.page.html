@@ -7,11 +7,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Despesas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-datetime-button datetime="datetime"></ion-datetime-button>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="datetime" presentation="month-year"></ion-datetime>
+    </ng-template>
+  </ion-modal>
 
-  <app-explore-container name="Despesas"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let despesa of todasDespesas">
+      <ion-label>
+        <span>{{despesa.descricao}}</span>
+        <p>{{categoria(despesa.categoriaId)}} | {{conta(despesa.contaId)}}</p>
+      </ion-label>
+      <ion-label slot="end" class="text-danger">{{despesa.valor | currency:'BRL'}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

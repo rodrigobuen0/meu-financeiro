@@ -37,8 +37,7 @@ export class PrincipalPage implements AfterViewInit, OnInit {
     responsive: true,
   };
 
-  constructor(private apiService: ApiService,  private router: Router,
-    ) {}
+  constructor(private apiService: ApiService,  private router: Router,) {}
 
   get totalContas() {
     return ApiService.totalContas;
