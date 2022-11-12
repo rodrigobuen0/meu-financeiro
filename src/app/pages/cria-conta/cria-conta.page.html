@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Nova Conta</ion-text>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Descrição da Conta</ion-label>
+    <ion-input [(ngModel)]="descricaoConta" maxlength="50" type="text" placeholder="Descrição"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Tipo da Conta</ion-label>
+    <ion-select interface="popover" placeholder="Conta" [(ngModel)]="tipoDaConta">
+      <ion-select-option value="0">Conta Corrente</ion-select-option>
+      <ion-select-option value="1">Carteira</ion-select-option>
+      <ion-select-option value="2">Poupança</ion-select-option>
+      <ion-select-option value="3">Investimentos</ion-select-option>
+      <ion-select-option value="4">Outros</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button expand="block" (click)="inserirConta()">Incluir</ion-button>
+
+</ion-content>

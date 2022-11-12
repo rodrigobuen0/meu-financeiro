@@ -1,4 +1,4 @@
-import { TabsPage } from './../../tabs/tabs.page';
+import { CriaContaPage } from './../cria-conta/cria-conta.page';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController, Platform } from '@ionic/angular';
@@ -39,6 +39,20 @@ export class ReceitaPage implements OnInit {
   get contas() {
     return ApiService.contas;
   }
+
+  async criaConta() {
+    const modal = await this.modalController.create({
+      component: CriaContaPage,
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop(),
+      // componentProps: {
+      //   rootPage: CriaContaPage,
+      // },
+    });
+
+    await modal.present();
+  }
+
   async ngOnInit() {}
   async close() {
     // const alert = await this.alertController.create({
