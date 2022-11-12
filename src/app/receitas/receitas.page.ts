@@ -19,6 +19,6 @@ export class ReceitasPage {
   }
 
   categoria(categoriaId){
-    return ApiService.categorias.find(c=>c.id === categoriaId).descricao;
+    return ApiService.categoriasReceitas.find(c=>c.id === categoriaId).descricao;
   }
 }

@@ -15,7 +15,8 @@ const REFRESH_TOKEN_KEY = 'my-refresh-token';
 })
 
 export class ApiService {
-  public static categorias: [Categorias];
+  public static categoriasReceitas: [Categorias];
+  public static categoriasDespesas: [Categorias];
   public static contas: [Contas];
   public static totalContas: number;
   public static totalReceitasMes: number;
@@ -41,7 +42,8 @@ export class ApiService {
     if (token) {
       this.currentAccessToken = token;
       this.isAuthenticated.next(true);
-      await this.getCategorias();
+      await this.getCategoriasReceitas();
+      await this.getCategoriasDespesas();
       await this.getContas();
       await this.getValorTotalReceitasMes();
       await this.getValorTotalDespesasMes();
@@ -129,10 +131,17 @@ storeRefreshToken(refreshToken) {
   return from(this.storage.set('my-refresh-token', refreshToken));
 }
 
-getCategorias(){
-  this.http.get<any>(`${this.url}/api/Categorias`).subscribe(data => {
-    ApiService.categorias = data;
-    this.storage.set('categorias', data);
+getCategoriasReceitas(){
+  this.http.get<any>(`${this.url}/api/CategoriasReceitas`).subscribe(data => {
+    ApiService.categoriasReceitas = data;
+    this.storage.set('categoriasReceitas', data);
+        });
+}
+
+getCategoriasDespesas(){
+  this.http.get<any>(`${this.url}/api/CategoriasDespesas`).subscribe(data => {
+    ApiService.categoriasDespesas = data;
+    this.storage.set('categoriasDespesas', data);
         });
 }
 

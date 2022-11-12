@@ -18,6 +18,6 @@ export class DespesasPage {
   }
 
   categoria(categoriaId){
-    return ApiService.categorias.find(c=>c.id === categoriaId).descricao;
+    return ApiService.categoriasDespesas.find(c=>c.id === categoriaId).descricao;
   }
 }

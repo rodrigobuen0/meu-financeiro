@@ -33,7 +33,7 @@ export class ReceitaPage implements OnInit {
   ) {}
 
   get categorias() {
-    return ApiService.categorias;
+    return ApiService.categoriasReceitas;
   }
 
   get contas() {

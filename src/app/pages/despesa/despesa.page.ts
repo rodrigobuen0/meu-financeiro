@@ -33,7 +33,7 @@ export class DespesaPage implements OnInit {
   ) { }
 
   get categorias() {
-    return ApiService.categorias;
+    return ApiService.categoriasDespesas;
   }
 
   get contas() {
