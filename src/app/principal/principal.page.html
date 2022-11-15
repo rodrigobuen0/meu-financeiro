@@ -97,13 +97,17 @@
           <ion-row>
 
             <ion-col size="5">
-              <canvas
+              <!-- <canvas
               [type]="'doughnut'"
               [legend]="false"
               [datasets]="salesData.datasets"
               [options]="chartOptions"
               baseChart>
-            </canvas></ion-col>
+            </canvas> -->
+            <div width="400" height="400">
+              <canvas id="canvas">{{chart}}</canvas>
+            </div>
+          </ion-col>
             <ion-col size="4" class="legendaChart d-flex align-items-center">
               <div class="legend-list">
 
@@ -113,10 +117,10 @@
                         <span class="slice-color" [ngStyle]="{'background-color': salesData.datasets[0].backgroundColor[i]}"></span>
                         <span class="slice-title">{{ salesData.labels[i] }} </span>
                     </li> -->
-                    <li *ngFor="let item of salesData.datasets[0].data; let i = index">
+                    <li *ngFor="let item of legendaChart, let i = index">
                       <div class="d-flex justify-content-center align-items-center legendValue">
-                      <span class="labelColor" [ngStyle]="{'background-color': salesData.datasets[0].backgroundColor[i]}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                      <span class="label">{{ salesData.labels[i] }}</span>
+                      <span class="labelColor" [ngStyle]="{'background-color': corLegendaChart(i)}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <span class="label">{{ item }}</span>
                     </div>
                   </li>
                   <div class="clear">
@@ -124,7 +128,18 @@
                 </ul>
               </div>
             </ion-col>
-            <ion-col size="3">COL 4</ion-col>
+            <ion-col size="3" class="d-flex align-items-center">
+              <ul class="custom-legend-list">
+
+              <li *ngFor="let item of valorChart, let i = index">
+                <div class="d-flex justify-content-center align-items-center legendValue">
+                <span class="label">{{ item | currency:'BRL' }}</span>
+              </div>
+            </li>
+            <div class="clear">
+                </div>
+          </ul>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>

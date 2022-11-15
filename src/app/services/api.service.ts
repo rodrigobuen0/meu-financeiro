@@ -23,7 +23,8 @@ export class ApiService {
   public static todasReceitasMes: [Receitas];
   public static totalDespesasMes: number;
   public static todasDespesasMes: [Despesas];
-
+  public static despesasAgrupadas: object;
+  public static categoriasNomes: string[];
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   currentAccessToken = null;
   url = environment.api_url;
@@ -131,21 +132,21 @@ storeRefreshToken(refreshToken) {
   return from(this.storage.set('my-refresh-token', refreshToken));
 }
 
-getCategoriasReceitas(){
+async getCategoriasReceitas(){
   this.http.get<any>(`${this.url}/api/CategoriasReceitas`).subscribe(data => {
     ApiService.categoriasReceitas = data;
     this.storage.set('categoriasReceitas', data);
         });
 }
 
-getCategoriasDespesas(){
+async getCategoriasDespesas(){
   this.http.get<any>(`${this.url}/api/CategoriasDespesas`).subscribe(data => {
     ApiService.categoriasDespesas = data;
     this.storage.set('categoriasDespesas', data);
         });
 }
 
-getContas(){
+async getContas(){
   this.http.get<any>(`${this.url}/api/Contas`).subscribe(data => {
     ApiService.contas = data;
     ApiService.totalContas = ApiService.contas.reduce((accumulator, object) => accumulator + object.saldoAtual, 0);
@@ -153,7 +154,7 @@ getContas(){
         });
 }
 
-getValorTotalReceitasMes(){
+async getValorTotalReceitasMes(){
   this.http.get<any>(`${this.url}/api/Receitas/ReceitasMes`)
   .subscribe((data) => {
     ApiService.totalReceitasMes = data.reduce((accumulator, object) => accumulator + object.valor, 0);
@@ -161,12 +162,21 @@ getValorTotalReceitasMes(){
   });
 }
 
-getValorTotalDespesasMes(){
+async getValorTotalDespesasMes(){
   this.http.get<any>(`${this.url}/api/Despesas/DespesasMes`)
-  .subscribe((data) => {
+  .subscribe(async (data) => {
     ApiService.totalDespesasMes = data.reduce((accumulator, object) => accumulator + object.valor, 0);
     ApiService.todasDespesasMes = data;
+    ApiService.despesasAgrupadas = await this.valoresCategorias();
   });
+}
+
+async valoresCategorias(){
+  const group = ApiService.todasDespesasMes.reduce((r, a) => {
+    r[a.categoriaId] = [...r[a.categoriaId] || [], a];
+    return r;
+   }, {});
+   return group;
 }
 
 }
