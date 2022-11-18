@@ -48,10 +48,10 @@ export class ApiService {
       await this.getContas();
       await this.getValorTotalReceitasMes();
       await this.getValorTotalDespesasMes();
-
-      this.router.navigateByUrl('/tabs', { replaceUrl: true });
     } else {
       this.isAuthenticated.next(false);
+      this.router.navigateByUrl('/login', { replaceUrl: true });
+
     }
   }
 
@@ -71,7 +71,6 @@ export class ApiService {
   login(credentials: {usuario, senha}): Observable<any> {
     return this.http.post(`${this.url}/auth`, credentials).pipe(
       switchMap((tokens: {jwtToken; refreshToken }) => {
-        console.log(this.currentAccessToken);
         this.currentAccessToken = tokens.jwtToken;
         const storeAccess = this.storage.set('my-access-token', tokens.jwtToken);
         const storeRefresh = this.storage.set('my-refresh-token',tokens.refreshToken);
@@ -89,7 +88,7 @@ logout() {
       const deleteRefresh = this.storage.remove('my-refresh-token');
       Promise.all([deleteAccess, deleteRefresh]);
       this.isAuthenticated.next(false);
-      this.router.navigateByUrl('/', { replaceUrl: true });
+      this.router.navigateByUrl('/login', { replaceUrl: true });
 
   // return this.http.post(`${this.url}/auth/logout`, {}).pipe(
   //   switchMap(_ => {
@@ -136,14 +135,14 @@ async getCategoriasReceitas(){
   this.http.get<any>(`${this.url}/api/CategoriasReceitas`).subscribe(data => {
     ApiService.categoriasReceitas = data;
     this.storage.set('categoriasReceitas', data);
-        });
+  });
 }
 
 async getCategoriasDespesas(){
   this.http.get<any>(`${this.url}/api/CategoriasDespesas`).subscribe(data => {
     ApiService.categoriasDespesas = data;
     this.storage.set('categoriasDespesas', data);
-        });
+  });
 }
 
 async getContas(){
@@ -151,7 +150,7 @@ async getContas(){
     ApiService.contas = data;
     ApiService.totalContas = ApiService.contas.reduce((accumulator, object) => accumulator + object.saldoAtual, 0);
     this.storage.set('contas', data);
-        });
+  });
 }
 
 async getValorTotalReceitasMes(){
@@ -168,6 +167,8 @@ async getValorTotalDespesasMes(){
     ApiService.totalDespesasMes = data.reduce((accumulator, object) => accumulator + object.valor, 0);
     ApiService.todasDespesasMes = data;
     ApiService.despesasAgrupadas = await this.valoresCategorias();
+    this.router.navigateByUrl('/tabs', { replaceUrl: true });
+
   });
 }
 

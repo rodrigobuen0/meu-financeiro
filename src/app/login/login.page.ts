@@ -33,8 +33,10 @@ export class LoginPage implements OnInit {
 
     this.apiService.login(this.credentials.value).subscribe(
       async _ => {
-        await loading.dismiss();
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        setTimeout(() => {
+          loading.dismiss();
+          this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        }, 100);
       },
       async (res) => {
         await loading.dismiss();
