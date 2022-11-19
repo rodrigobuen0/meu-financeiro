@@ -2,6 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
@@ -12,7 +13,10 @@ import { ReceitaPageModule } from './../pages/receita/receita.module';
 import { DespesaPageModule } from './../pages/despesa/despesa.module';
 import { DespesaCartaoPageModule } from './../pages/despesa-cartao/despesa-cartao.module';
 import { TransferenciaPageModule } from './../pages/transferencia/transferencia.module';
-import { DatePipe } from '@angular/common';
+import { CriaContaPageModule } from '../pages/cria-conta/cria-conta.module';
+import { CriaCatReceitasPageModule } from './../pages/cria-cat-receitas/cria-cat-receitas.module';
+import { CriaCatDespesasPageModule } from './../pages/cria-cat-despesas/cria-cat-despesas.module';
+
 
 @NgModule({
   imports: [
@@ -24,7 +28,10 @@ import { DatePipe } from '@angular/common';
     ReceitaPageModule,
     DespesaPageModule,
     DespesaCartaoPageModule,
-    TransferenciaPageModule
+    TransferenciaPageModule,
+    CriaContaPageModule,
+    CriaCatReceitasPageModule,
+    CriaCatDespesasPageModule
   ],
   declarations: [TabsPage],
   providers: [DatePipe]

@@ -43,7 +43,6 @@ export class ReceitaPage implements OnInit {
   async criaConta() {
     const modal = await this.modalController.create({
       component: CriaContaPage,
-      swipeToClose: true,
       presentingElement: await this.modalController.getTop(),
       // componentProps: {
       //   rootPage: CriaContaPage,

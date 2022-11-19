@@ -41,6 +41,7 @@ export class ApiService {
       await this.storage.create();
     const token = await this.storage.get('my-access-token');
     if (token) {
+      console.log(token);
       this.currentAccessToken = token;
       this.isAuthenticated.next(true);
       await this.getCategoriasReceitas();

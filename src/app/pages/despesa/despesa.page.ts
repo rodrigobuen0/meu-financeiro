@@ -1,4 +1,3 @@
-import { TabsPage } from './../../tabs/tabs.page';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController, Platform } from '@ionic/angular';

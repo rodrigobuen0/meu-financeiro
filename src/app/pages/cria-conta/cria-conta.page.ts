@@ -14,14 +14,16 @@ import { ApiService } from '../../services/api.service';
 export class CriaContaPage implements OnInit {
   url = environment.api_url;
   descricaoConta;
-  tipoDaConta;
+  tipoDaConta: number;
+  loading: any;
   constructor(
     private modalController: ModalController,
     private http: HttpClient,
     public datepipe: DatePipe,
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
   }
   async close() {
     this.modalController.dismiss();
@@ -33,12 +35,12 @@ export class CriaContaPage implements OnInit {
     });
 
     loading.present();
-    const body = {
+    const conta = {
       descricao: this.descricaoConta,
-      tipoConta: this.tipoDaConta
+      tipoConta: Number(this.tipoDaConta),
     };
     this.http
-      .post<any>(`${this.url}/api/Contas`, body)
+      .post<any>(`${this.url}/api/Contas`, conta)
       .subscribe(async (data) => {
 
         ApiService.contas.push(data);
