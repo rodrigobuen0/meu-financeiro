@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>CriaCatReceitas</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Nova Categoria</ion-text>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-item>
+    <ion-label position="stacked">Descrição da Categoria</ion-label>
+    <ion-input [(ngModel)]="descricaoCategoria" maxlength="50" type="text" placeholder="Descrição"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="inserirCategoriaReceita()">Incluir</ion-button>
 
 </ion-content>

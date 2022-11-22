@@ -1,3 +1,4 @@
+import { CriaCatReceitasPage } from './../cria-cat-receitas/cria-cat-receitas.page';
 import { CriaContaPage } from './../cria-conta/cria-conta.page';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
@@ -52,6 +53,18 @@ export class ReceitaPage implements OnInit {
     await modal.present();
   }
 
+  async criarCategoriaReceita(){
+    const modal = await this.modalController.create({
+      component: CriaCatReceitasPage,
+      presentingElement: await this.modalController.getTop(),
+      // componentProps: {
+      //   rootPage: CriaContaPage,
+      // },
+    });
+
+    await modal.present();
+  }
+
   async ngOnInit() {}
   async close() {
     // const alert = await this.alertController.create({
@@ -97,7 +110,7 @@ export class ReceitaPage implements OnInit {
 
         ApiService.contas[indexConta].saldoAtual += parseFloat(body.valor);
         ApiService.totalReceitasMes += parseFloat(body.valor);
-
+        ApiService.todasReceitasMes.push(data);
         await this.atualizarSaldo(ApiService.contas[indexConta]);
         loading.dismiss();
         this.modalController.dismiss();

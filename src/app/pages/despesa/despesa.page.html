@@ -37,12 +37,14 @@
     <ion-select interface="popover" placeholder="Categoria" [(ngModel)]="categoriaSelecionada">
       <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.descricao}}</ion-select-option>
     </ion-select>
+    <button slot="end" class="btnAdd" (click)="criarCategoriaDespesa()"><ion-icon name="add"></ion-icon></button>
   </ion-item>
 
   <ion-item>
     <ion-select interface="popover" placeholder="Conta" [(ngModel)]="contaSelecionada">
       <ion-select-option *ngFor="let conta of contas" [value]="conta.id">{{conta.descricao}}</ion-select-option>
     </ion-select>
+    <button slot="end" class="btnAdd" (click)="criaConta()"><ion-icon name="add"></ion-icon></button>
   </ion-item>
 
   <ion-button expand="block" (click)="inserirDespesa()">Incluir</ion-button>

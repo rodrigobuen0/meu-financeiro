@@ -1,3 +1,4 @@
+import { CriaCatDespesasPage } from './../cria-cat-despesas/cria-cat-despesas.page';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController, Platform } from '@ionic/angular';
@@ -6,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from '../../services/api.service';
+import { CriaCatReceitasPage } from './../cria-cat-receitas/cria-cat-receitas.page';
+import { CriaContaPage } from './../cria-conta/cria-conta.page';
 
 @Component({
   selector: 'app-despesa',
@@ -38,6 +41,30 @@ export class DespesaPage implements OnInit {
   get contas() {
     return ApiService.contas;
   }
+  async criaConta() {
+    const modal = await this.modalController.create({
+      component: CriaContaPage,
+      presentingElement: await this.modalController.getTop(),
+      // componentProps: {
+      //   rootPage: CriaContaPage,
+      // },
+    });
+
+    await modal.present();
+  }
+
+  async criarCategoriaDespesa(){
+    const modal = await this.modalController.create({
+      component: CriaCatDespesasPage,
+      presentingElement: await this.modalController.getTop(),
+      // componentProps: {
+      //   rootPage: CriaContaPage,
+      // },
+    });
+
+    await modal.present();
+  }
+
   async ngOnInit() {}
   async close() {
     // const alert = await this.alertController.create({
@@ -83,6 +110,7 @@ export class DespesaPage implements OnInit {
 
         ApiService.contas[indexConta].saldoAtual -= parseFloat(body.valor);
         ApiService.totalDespesasMes += parseFloat(body.valor);
+        ApiService.todasDespesasMes.push(data);
         await this.atualizarSaldo(ApiService.contas[indexConta]);
         loading.dismiss();
         this.modalController.dismiss();
