@@ -1,3 +1,4 @@
+import { IonicCurrencyMaskModule } from './../../masks/ionic-currency-mask.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { TransferenciaPage } from './transferencia.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TransferenciaPageRoutingModule
+    TransferenciaPageRoutingModule,
+    IonicCurrencyMaskModule
   ],
   declarations: [TransferenciaPage]
 })

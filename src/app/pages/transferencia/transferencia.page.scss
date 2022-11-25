@@ -1,0 +1,14 @@
+.pTransferirPara {
+  color: var(--color);
+}
+
+.ionItemTransferirPara {
+  text-align: center;
+  --padding-start: none;
+  ion-label{
+    margin-bottom: 0;
+    ion-icon {
+     font-size: 20px;
+    }
+   }
+}
