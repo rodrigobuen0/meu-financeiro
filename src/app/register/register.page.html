@@ -1,0 +1,65 @@
+<ion-content>
+  <div class="row text-center d-flex align-items-center" style="height: 100%;">
+    <form (ngSubmit)="registrar()" [formGroup]="credentials">
+      <ion-card-header>
+        <ion-card-title>Registrar</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="full">
+          <ion-label position="floating">Primeiro Nome</ion-label>
+          <ion-input placeholder="Primeiro Nome" formControlName="primeiroNome" minlength="3" type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating">Último Nome</ion-label>
+          <ion-input placeholder="Último Nome" formControlName="ultimoNome" minlength="3" type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input placeholder="+55 (xx) xxxxx-xxxx" formControlName="telefone" type="text" maxlength="19" mask="+** (**) *****-****" required></ion-input>
+        </ion-item>
+        <!-- <ion-item lines="full">
+          <ion-label position="floating">Data de Nascimento</ion-label>
+          <ion-input placeholder="data de nascimento" formControlName="dataNascimento" type="text" required></ion-input>
+        </ion-item> -->
+        <ion-item id="open-popover1" lines="full">
+          <ion-label>Data de Nascimento</ion-label>
+          <ion-note slot="end">{{dataNascimento | date: 'dd/MM/yyyy'}}</ion-note>
+        </ion-item>
+        <ion-popover trigger="open-popover1" cssClass="width-80" show-backdrop="true">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="dataNascimento"
+              size="cover"
+              formControlName="dataNascimento"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+        <ion-item lines="full">
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input placeholder="CPF" formControlName="cpf" type="tel" maxlength="14" mask="***.***.***-**" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-select interface="popover" placeholder="Sexo" formControlName="sexo">
+            <ion-select-option value="0">Masculino</ion-select-option>
+            <ion-select-option value="1">Feminino</ion-select-option>
+            <ion-select-option value="2">Outro</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input placeholder="email" formControlName="email" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" placeholder="Password" formControlName="senha" required></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" expand="block">Criar Conta</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </form>
+  </div>
+</ion-content>

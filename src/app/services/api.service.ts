@@ -63,8 +63,42 @@ export class ApiService {
 
   // Create new user
   // eslint-disable-next-line @typescript-eslint/member-delimiter-style
-  signUp(credentials: {usuario, senha}): Observable<any> {
-    return this.http.post(`${this.url}/users`, credentials);
+  signUp(credentials): Observable<any> {
+    let date; let month; let year;
+const data = new Date(credentials.dataNascimento);
+// eslint-disable-next-line prefer-const
+date = data.getDate();
+// eslint-disable-next-line prefer-const
+month = data.getMonth() + 1; // take care of the month's number here ⚠️
+// eslint-disable-next-line prefer-const
+year = data.getFullYear();
+if (date < 10) {
+  date = '0' + date;
+}
+
+if (month < 10) {
+  month = '0' + month;
+}
+date = date
+  .toString()
+  .padStart(2, '0');
+
+month = month
+  .toString()
+  .padStart(2, '0');
+    const user = {
+      primeiroNome: credentials.primeiroNome,
+      ultimoNome: credentials.ultimoNome,
+      telefone: credentials.telefone.replace(/[^0-9\s]/g, '').replace(/ /g,''),
+      dataNascimento: `${date}/${month}/${year}`,
+      cpf: credentials.cpf.replace(/[^0-9\s]/g, ''),
+      // eslint-disable-next-line radix
+      sexo: parseInt(credentials.sexo),
+      email: credentials.email,
+      hashSenha: credentials.senha,
+    };
+    console.log(JSON.stringify(user));
+    return this.http.post(`${this.url}/users`, user);
   }
 
   // Sign in a user and store access and refres token
