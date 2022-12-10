@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tabs">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Detalhes</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding text-center">
+  <p>{{dadosConta.descricao}}</p>
+  <!-- <h2>{{totalConta}}</h2> -->
+  <ion-input [(ngModel)]="totalContaNovo" maxlength="15" type="tel" placeholder="0,00" currencyMask decimal="," thousand="."></ion-input>
+  <ion-button shape="round" class="text-white" (click)="reajustar()" >Reajustar Saldo</ion-button>
+</ion-content>

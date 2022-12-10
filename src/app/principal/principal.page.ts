@@ -1,8 +1,10 @@
+import { DetalheContaPage } from './../pages/detalhe-conta/detalhe-conta.page';
 import { filter } from 'rxjs/operators';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './../services/api.service';
 import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 import { Router } from '@angular/router';
+import { IonRouterOutlet, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-principal',
@@ -11,7 +13,12 @@ import { Router } from '@angular/router';
 })
 export class PrincipalPage implements AfterViewInit, OnInit {
   chart: any = [];
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private modalController: ModalController,
+    private routerOutlet: IonRouterOutlet
+  ) {
     Chart.register(...registerables);
   }
 
@@ -63,9 +70,9 @@ export class PrincipalPage implements AfterViewInit, OnInit {
         plugins: {
           legend: {
             display: false,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   }
 
@@ -83,16 +90,29 @@ export class PrincipalPage implements AfterViewInit, OnInit {
 
   categoriasChartValores() {
     const valoresCat = [];
-     for (const despesaId in ApiService.despesasAgrupadas) {
-      if (ApiService.despesasAgrupadas.hasOwnProperty(despesaId)){
-        const depesas = ApiService.todasDespesasMes.filter(c => c.id === despesaId);
-         valoresCat.push(ApiService.despesasAgrupadas[despesaId].reduce((accumulator, object) => accumulator + object.valor, 0));
-       }
+    for (const despesaId in ApiService.despesasAgrupadas) {
+      if (ApiService.despesasAgrupadas.hasOwnProperty(despesaId)) {
+        const depesas = ApiService.todasDespesasMes.filter(
+          (c) => c.id === despesaId
+        );
+        valoresCat.push(
+          ApiService.despesasAgrupadas[despesaId].reduce(
+            (accumulator, object) => accumulator + object.valor,
+            0
+          )
+        );
       }
+    }
     return valoresCat;
   }
 
-  corLegendaChart(i){
+  async reajusteConta(contaId) {
+    this.router.navigateByUrl('/detalhesConta?contaId=' + contaId, {
+      replaceUrl: true,
+    });
+  }
+
+  corLegendaChart(i) {
     const cores = [
       'rgb(239, 71, 111)',
       'rgb(255, 209, 102)',
@@ -115,4 +135,3 @@ export class PrincipalPage implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {}
 }
-

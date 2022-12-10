@@ -14,7 +14,13 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 ],
