@@ -2,3 +2,10 @@ ion-item {
   margin: 0 15px 0 15px;
   --padding-start: 0;
 }
+ion-item-options {
+  font-size: 20px;
+  margin-right: 0.5em;
+  button {
+    background-color: var(--ion-item-background) !important;
+  }
+}
