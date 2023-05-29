@@ -2,6 +2,14 @@
 
 Aplicativo para controle financeiro pessoal.
 
+
+## Stack utilizada
+
+**Front-end:** Ionic, Angular
+
+**Back-end:** .NET 6.0, EntityFramework, MySQL
+[Repositório da API](https://github.com/rodrigobuen0/meu-financeiro.API)
+
 ## Screenshots
 ![App Screenshot](/imgs/login.png)
 ![App Screenshot](/imgs/addDespesas.png)
